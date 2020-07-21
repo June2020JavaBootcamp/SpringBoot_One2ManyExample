@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Sales</title>
+</head>
+<body>
+<form th:action="@{/processSale}" method="post" th:object="${sale}">
+    Item Name:<input type="text" th:field="*{name}"/> <br/>
+    Price:<input type="number" th:field="*{price}"/> <br/>
+
+    Choose a customer:
+    <select name="custid">
+        <option th:each="cust : ${customers}"
+                th:value="${cust.id}"
+                th:text="${cust.name}"></option>
+    </select>
+    <br/>
+    <input type="submit" value="New Sale">
+</form>
+<br>
+</body>
+</html>

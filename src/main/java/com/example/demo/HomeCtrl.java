@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.HashSet;
@@ -40,15 +41,17 @@ public class HomeCtrl {
     @RequestMapping("/addSales")
     public String addSales(Model model){
         model.addAttribute("sale", new Sale());
-        model.addAttribute("customers", customerRepository.findAll());
+        //model.addAttribute("customers", customerRepository.findAll());
+        model.addAttribute("customers", customerRepository.findAllByIdGreaterThanOrderByName(0));
         return "addSales";
     }
 
     @PostMapping("/processSale")
-    public String processSale(@ModelAttribute Sale sale) {
+    public String processSale(@ModelAttribute Sale sale,
+                              @RequestParam("custid") long custid) {
+        Customer customer = customerRepository.findById(custid).get();
+        sale.setCustomer(customer);
         saleRepository.save(sale);
         return "redirect:/";
     }
-
-
 }
