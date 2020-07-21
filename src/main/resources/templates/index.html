@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customers</title>
+</head>
+<body>
+<h1>Customer Listing</h1>
+<div th:each="customer : ${customers}">
+    <h5 th:text="${customer.name}"></h5>
+    <ul>
+        <th:block th:each="sale : ${customer.sales}">
+            <li th:inline="text">
+                Item: [[${sale.name}]]  Price: $[[${sale.price}]]
+            </li>
+        </th:block>
+    </ul>
+
+</div>
+</body>
+</html>
