@@ -13,11 +13,18 @@
     Price:<input type="number" th:field="*{price}"/> <br/>
 
     Choose a customer:
-    <select name="custid">
+<!--    <select name="custid">-->
+<!--        <option th:each="cust : ${customers}"-->
+<!--                th:value="${cust.id}"-->
+<!--                th:text="${cust.name}"></option>-->
+<!--    </select>-->
+
+    <select th:field="*{customer.id}">
         <option th:each="cust : ${customers}"
                 th:value="${cust.id}"
                 th:text="${cust.name}"></option>
     </select>
+
     <br/>
     <input type="submit" value="New Sale">
 </form>

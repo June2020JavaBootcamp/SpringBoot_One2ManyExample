@@ -61,11 +61,17 @@ public class HomeCtrl {
         return "addSales";
     }
 
+//    @PostMapping("/processSale")
+//    public String processSale(@ModelAttribute Sale sale,
+//                              @RequestParam("custid") long custid) {
+//        Customer customer = customerRepository.findById(custid).get();
+//        sale.setCustomer(customer);
+//        saleRepository.save(sale);
+//        return "redirect:/";
+//    }
+
     @PostMapping("/processSale")
-    public String processSale(@ModelAttribute Sale sale,
-                              @RequestParam("custid") long custid) {
-        Customer customer = customerRepository.findById(custid).get();
-        sale.setCustomer(customer);
+    public String processSale(@ModelAttribute Sale sale) {
         saleRepository.save(sale);
         return "redirect:/";
     }
