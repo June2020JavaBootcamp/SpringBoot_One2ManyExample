@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List All Sales</title>
+    <div th:replace="base :: headerfg"></div>
+</head>
+<body>
+<div th:replace="base :: navlinksfg"></div>
+<h1>List of All Sales</h1>
+<table>
+    <thead>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Action</th>
+    </thead>
+    <tbody>
+    <tr th:each = "sale : ${sales}" >
+        <td>[[${sale.name}]]</td>
+        <td>[[${sale.price}]]</td>
+        <td>
+            <button><a th:href="@{/detailSales/{id}(id=${sale.id})}">Detail</a></button>
+            <button><a th:href="@{/updateSales/{id}(id=${sale.id})}">Update</a></button>
+            <button><a th:href="@{/deleteSales/{id}(id=${sale.id})}">Delete</a></button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div th:replace="base ::footerfg"></div>
+</body>
+</html>

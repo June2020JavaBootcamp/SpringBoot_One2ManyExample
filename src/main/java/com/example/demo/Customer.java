@@ -14,9 +14,13 @@ public class Customer {
 
     private String name;
 
+//    @OneToMany(mappedBy = "customer",
+//               cascade = CascadeType.ALL,
+//               orphanRemoval = true)
+
     @OneToMany(mappedBy = "customer",
-               cascade = CascadeType.ALL,
-               fetch = FetchType.EAGER)
+            cascade = CascadeType.REMOVE,
+            fetch = FetchType.EAGER)
     private Set<Sale> sales;
 
     public Customer() {

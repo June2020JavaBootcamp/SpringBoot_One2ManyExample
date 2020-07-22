@@ -2,16 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add Customer</title>
+    <title>Detail Sale</title>
     <div th:replace="base :: headerfg"></div>
 </head>
 <body>
 <div th:replace="base :: navlinksfg"></div>
-<form th:action="@{/processCustomer}" method="post" th:object="${customer}">
-    <input type="hidden" th:field="*{id}"/>
-    Name: <input type="text" th:field="*{name}"/>
-    <input type="submit" value="New Customer"/>
-</form>
+<h1>Detail Sale Information</h1>
+
 <div th:replace="base ::footerfg"></div>
 </body>
 </html>

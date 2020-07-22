@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Sales</title>
+    <div th:replace="base :: headerfg"></div>
 </head>
 <body>
+<div th:replace="base :: navlinksfg"></div>
 <form th:action="@{/processSale}" method="post" th:object="${sale}">
+    <input type="hidden" th:field="*{id}"/>
     Item Name:<input type="text" th:field="*{name}"/> <br/>
     Price:<input type="number" th:field="*{price}"/> <br/>
 
@@ -19,5 +22,6 @@
     <input type="submit" value="New Sale">
 </form>
 <br>
+<div th:replace="base ::footerfg"></div>
 </body>
 </html>

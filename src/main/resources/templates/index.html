@@ -2,20 +2,37 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Customers</title>
+    <title>Home</title>
+    <div th:replace="base :: headerfg"></div>
 </head>
 <body>
+<div th:replace="base :: navlinksfg"></div>
 <h1>Customer Listing</h1>
-<div th:each="customer : ${customers}">
-    <h5 th:text="${customer.name}"></h5>
-    <ul>
-        <th:block th:each="sale : ${customer.sales}">
-            <li th:inline="text">
-                Item: [[${sale.name}]]  Price: $[[${sale.price}]]
-            </li>
-        </th:block>
-    </ul>
 
-</div>
+<table class="table">
+    <thead class="thead-dark">
+    <th scope="col-3">Name</th>
+    <th scope="col-6">Sales</th>
+    <th scope="col-3">Action</th>
+    </thead>
+    <tbody>
+        <tr th:each="customer : ${customers}">
+            <td th:text="${customer.name}"></td>
+            <td>
+                <th:block th:each="sale : ${customer.sales}">
+                    <li th:inline="text">
+                        Item: [[${sale.name}]] Price: $[[${sale.price}]]
+                    </li>
+                </th:block>
+            </td>
+            <td>
+                <button><a th:href="@{/detailCust/{id}(id=${customer.id})}">Detail</a></button>
+                <button><a th:href="@{/updateCust/{id}(id=${customer.id})}">Update</a></button>
+                <button><a th:href="@{/deleteCust/{id}(id=${customer.id})}">Delete</a></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div th:replace="base ::footerfg"></div>
 </body>
 </html>
